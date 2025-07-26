@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Simple N Spicy</title>
+    <link rel="icon" href="SNS_logo.jpg" type="image/jpeg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="SNS_logo.jpg" alt="Logo" style="height: 60px; margin-right: 10px; border-radius: 50%;">
+                <span class="brand-name">SIMPLE N <span class="brand-highlight">SPICY</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="offers.html">Offers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <div class="ms-3 d-flex">
+                    <a href="ordernow.html" class="btn btn-primary">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title">Visit Us</h2>
+                <p class="section-subtitle">We'd love to hear from you</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="contact-card text-center p-4 h-100">
+                        <div class="contact-icon mb-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Location</h3>
+                        <p>HYD<br>Nagaram, 500083</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="contact-card text-center p-4 h-100">
+                        <div class="contact-icon mb-3">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Phone</h3>
+                        <p>+91 9121588322<br>For Orders and Queries</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="contact-card text-center p-4 h-100">
+                        <div class="contact-icon mb-3">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Hours</h3>
+                        <p>Monday - Friday: 11am - 10pm<br>Saturday - Sunday: 10am - 11pm</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.2782369741662!2d78.5944454!3d17.494226599999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9d0025b8bb17%3A0x84aaa9e7217db2ae!2sSimple%20and%20spicy!5e0!3m2!1sen!2sin!4v1753372335032!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-form p-4">
+                        <h3 class="mb-4">Send Us a Message</h3>
+                        <form id="contactForm" method="get" target="_blank">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="mobile" placeholder="Your Mobile Number" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" name="text" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="sendMessage()">Send Message</button>
+                        </form>
+                        <script>
+                            function sendMessage() {
+                                const form = document.getElementById('contactForm');
+                                const name = encodeURIComponent(form.name.value);
+                                const email = encodeURIComponent(form.email.value);
+                                const mobile = encodeURIComponent(form.mobile.value);
+                                const text = encodeURIComponent(form.text.value);
+                                const whatsappURL = `https://wa.me/7386443938?text=Name: ${name}%0AEmail: ${email}%0APhone Number: ${mobile}%0AMessage: ${text}`;
+                                window.open(whatsappURL, '_blank');
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="brand-name mb-3">SIMPLE N <span class="brand-highlight">SPICY</span></h3>
+                    <p>Artisanal food crafted with passion and precision. We celebrate quality ingredients and culinary creativity.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-yelp"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html">Home</a></li>
+                        <li class="mb-2"><a href="menu.html">Menu</a></li>
+                        <li class="mb-2"><a href="offers.html">Offers</a></li>
+                        <li class="mb-2"><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> HYD, Nagaram, 500083</li>
+                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> +91 9121588322</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@simplenspicy.com</li>
+                        <li><i class="fas fa-clock me-2"></i> Mon-Fri: 11am-10pm, Sat-Sun: 10am-11pm</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-72" style="font-size: 3.0em;">SIMPLICITY<br> MEETS <br> SPICE</h5>
+                </div>
+            </div>
+            <hr class="mt-5">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 SIMPLE N SPICY. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">
+                        <a href="#" class="me-3">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Icon -->
+    <a href="https://wa.me/919121588322" target="_blank" style="position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: white; border-radius: 50%; width: 80px; height: 80px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-decoration: none;">
+        <i class="fab fa-whatsapp" style="font-size: 40px;"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

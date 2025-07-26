@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple N Spicy</title>
+    <link rel="icon" href="SNS_logo.jpg" type="image/jpeg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .card-img-top {
+            height: 200px; /* Set a consistent height for all images */
+            object-fit: cover; /* Ensure the image fits within the specified dimensions */
+        }
+        #cartContainer {
+            position: fixed;
+            top: 0;
+            right: -25%;
+            width: 25%;
+            height: 100%;
+            background-color: #f8f9fa;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1050;
+        }
+        #cartContainer.show {
+            right: 0;
+        }
+        #cartOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1049;
+            display: none;
+        }
+        @media (max-width: 768px) {
+        #cartContainer {
+            width: 100%;
+            right: -100%;
+        }
+        #cartContainer.show {
+            right: 0;
+        }
+        #cartOverlay {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(62, 35, 2, 0.95);">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="SNS_logo.jpg" alt="Logo" style="height: 60px; margin-right: 10px; border-radius: 50%;">
+                <span class="brand-name">SIMPLE N <span class="brand-highlight">SPICY</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#offers">Offers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-sm btn-primary position-relative" onclick="showCart()">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">0</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5" style="margin-top: 80px;">
+        <h1 class="text-center mb-4">Order Your Favorite Pickles</h1>
+        <div class="row">
+            <!-- Horizontal Category Buttons -->
+            <div class="col-12 text-center mb-4">
+                <div class="btn-group" role="group">
+                    <button class="btn btn-outline-primary" onclick="filterCategory('all')">All</button>
+                    <button class="btn btn-outline-primary" onclick="filterCategory('nonveg')">Non-Veg Pickles</button>
+                    <button class="btn btn-outline-primary" onclick="filterCategory('veg')">Veg Pickles</button>
+                </div>
+            </div>
+
+            <!-- Menu Items in Grid Format -->
+            <div class="col-md-9">
+                <div class="row row-cols-1 row-cols-md-3 g-4" id="menuItems">
+                    <!-- Menu Items Imported from index.html -->
+                    <div class="card mb-3" data-category="veg"> 
+                        <img src="avakaya.jpg" class="card-img-top img-fluid" alt="Avakaya Pickle">
+                        <div class="card-body">
+                            <h5 class="card-title">Avakaya Pickle</h5>
+                            <p class="card-text">Classic, bold, and bursting with raw mango fire.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <select class="form-select form-select-sm me-2" onchange="updatePrice(this, 280)">
+                                    <option value="180">500 g - ₹280</option>
+                                    <option value="320">1 kg - ₹560</option>
+                                </select>
+                                <button class="btn btn-sm btn-primary" onclick="addToCart('Avakaya Pickle', this.previousElementSibling.value)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3" data-category="veg">
+                        <img src="tomato.jpg" class="card-img-top img-fluid" alt="Tomato Pickle">
+                        <div class="card-body">
+                            <h5 class="card-title">Tomato Pickle</h5>
+                            <p class="card-text">Juicy, tangy, and unapologetically spicy.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <select class="form-select form-select-sm me-2" onchange="updatePrice(this, 280)">
+                                    
+                                    <option value="180">500 g - ₹280</option>
+                                    <option value="320">1 kg - ₹560</option>
+                                </select>
+                                <button class="btn btn-sm btn-primary" onclick="addToCart('Tomato Pickle', this.previousElementSibling.value)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3" data-category="veg">
+                        <img src="gongura.jpg" class="card-img-top img-fluid" alt="Gongura Pickle">
+                        <div class="card-body">
+                            <h5 class="card-title">Gongura Pickle</h5>
+                            <p class="card-text">Sour meets spice in this leafy legend.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <select class="form-select form-select-sm me-2" onchange="updatePrice(this, 280)">
+                                    
+                                    <option value="180">500 g - ₹280</option>
+                                    <option value="320">1 kg - ₹560</option>
+                                </select>
+                                <button class="btn btn-sm btn-primary" onclick="addToCart('Gongura Pickle', this.previousElementSibling.value)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3" data-category="nonveg">
+                        <img src="chicken_pikcle_with_bone.jpeg" class="card-img-top img-fluid" alt="Chicken Pickle (Bone)">
+                        <div class="card-body">
+                            <h5 class="card-title">Chicken Pickle (Bone)</h5>
+                            <p class="card-text">Flavor that clings to the bone and hits the soul.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <select class="form-select form-select-sm me-2" onchange="updatePrice(this, 500)">
+                                    <option value="400">500 g - ₹500</option>
+                                    <option value="800">1 kg - ₹1000</option>
+                                </select>
+                                <button class="btn btn-sm btn-primary" onclick="addToCart('Chicken Pickle (Bone)', this.previousElementSibling.value)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3" data-category="nonveg">
+                        <img src="BL_chicken_pickle.png" class="card-img-top img-fluid" alt="Chicken Pickle (Boneless)">
+                        <div class="card-body">
+                            <h5 class="card-title">Chicken Pickle (Boneless)</h5>
+                            <p class="card-text">All meat. All heat. No bones, just boldness.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <select class="form-select form-select-sm me-2" onchange="updatePrice(this, 600)">
+                                    <option value="500">500 g - ₹600</option>
+                                    <option value="1000">1 kg - ₹1200</option>
+                                </select>
+                                <button class="btn btn-sm btn-primary" onclick="addToCart('Chicken Pickle (Boneless)', this.previousElementSibling.value)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3" data-category="nonveg">
+                        <img src="prawns.jpg" class="card-img-top img-fluid" alt="Prawns Pickle">
+                        <div class="card-body">
+                            <h5 class="card-title">Prawns Pickle</h5>
+                            <p class="card-text">Sea spice unleashed – prawns soaked in fiery magic.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <select class="form-select form-select-sm me-2" onchange="updatePrice(this, 850)">
+                                    <option value="800">500 g - ₹850</option>
+                                    <option value="1500">1 kg - ₹1700</option>
+                                </select>
+                                <button class="btn btn-sm btn-primary" onclick="addToCart('Prawns Pickle', this.previousElementSibling.value)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Section -->
+            <div id="cartContainer">
+                <div class="card">
+                    <div class="card-body">
+                        <button class="btn btn-sm btn-danger mb-3" onclick="closeCart()">Close</button>
+                        <h5 class="card-title">Your Cart</h5>
+                        <ul id="cartItems" class="list-group mb-3">
+                            <!-- Cart items will be dynamically added here -->
+                        </ul>
+                        <h6>Total: ₹<span id="totalAmount">0</span></h6>
+                        <button class="btn btn-success w-100 mt-3" onclick="placeOrder()">Place Order</button>
+                    </div>
+                </div>
+            </div>
+            <div id="cartOverlay" onclick="closeCart()"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="brand-name mb-3">SIMPLE N <span class="brand-highlight">SPICY</span></h3>
+                    <p>Artisanal food crafted with passion and precision. We celebrate quality ingredients and culinary creativity.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-yelp"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html">Home</a></li>
+                        <li class="mb-2"><a href="#menu">Menu</a></li>
+                        <li class="mb-2"><a href="#offers">Offers</a></li>
+                        <li class="mb-2"><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> HYD, Nagaram, 500083</li>
+                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> +91 9121588322</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@simplenspicy.com</li>
+                        <li><i class="fas fa-clock me-2"></i> Mon-Fri: 11am-10pm, Sat-Sun: 10am-11pm</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-72" style="font-size: 3.0em;">SIMPLICITY<br> MEETS <br> SPICE</h5>
+                </div>
+            </div>
+            <hr class="mt-5">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 SIMPLE N SPICY. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">
+                        <a href="#" class="me-3">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Icon -->
+    <a href="https://wa.me/919121588322" target="_blank" style="position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: white; border-radius: 50%; width: 80px; height: 80px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-decoration: none;">
+        <i class="fab fa-whatsapp" style="font-size: 40px;"></i>
+    </a>
+
+    <script>
+  let cart = [];
+
+  function addToCart(itemName, price) {
+    price = parseFloat(price);
+    const existingItem = cart.find(item => item.name === itemName && item.unitPrice === price);
+
+    if (existingItem) {
+      existingItem.units += 1;
+      existingItem.totalPrice = existingItem.units * existingItem.unitPrice;
+    } else {
+      cart.push({
+        name: itemName,
+        units: 1,
+        unitPrice: price,
+        totalPrice: price
+      });
+    }
+
+    updateCart();
+    showCart();
+  }
+
+  function updateCart() {
+    const cartItems = document.getElementById('cartItems');
+    const totalAmount = document.getElementById('totalAmount');
+    const cartCount = document.getElementById('cartCount');
+    cartItems.innerHTML = '';
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.className = 'list-group-item d-flex justify-content-between align-items-center';
+      li.innerHTML = `
+        <div>
+          <strong>${item.name}</strong><br>
+          ₹${item.totalPrice.toFixed(2)} (${item.units} × ₹${item.unitPrice})
+        </div>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-sm btn-secondary me-2" onclick="changeUnits(${index}, -1)">-</button>
+          <span>${item.units}</span>
+          <button class="btn btn-sm btn-secondary ms-2" onclick="changeUnits(${index}, 1)">+</button>
+          <button class="btn btn-sm btn-danger ms-2" onclick="removeFromCart(${index})">Remove</button>
+        </div>
+      `;
+      cartItems.appendChild(li);
+      total += item.totalPrice;
+    });
+
+    totalAmount.textContent = total.toFixed(2);
+    cartCount.textContent = cart.reduce((sum, item) => sum + item.units, 0);
+  }
+
+  function changeUnits(index, delta) {
+    cart[index].units += delta;
+    if (cart[index].units <= 0) {
+      cart.splice(index, 1);
+    } else {
+      cart[index].totalPrice = cart[index].units * cart[index].unitPrice;
+    }
+    updateCart();
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+
+  function showCart() {
+    document.getElementById('cartContainer').classList.add('show');
+    document.getElementById('cartOverlay').style.display = 'block';
+  }
+
+  function closeCart() {
+    document.getElementById('cartContainer').classList.remove('show');
+    document.getElementById('cartOverlay').style.display = 'none';
+  }
+
+  function placeOrder() {
+    if (cart.length === 0) {
+      alert('Your cart is empty!');
+      return;
+    }
+
+    let orderDetails = 'Order Details:%0A';
+    cart.forEach(item => {
+      const quantity = item.unitPrice === 180 || item.unitPrice === 400 || item.unitPrice === 500 || item.unitPrice === 800
+        ? '500 g'
+        : '1 kg';
+      orderDetails += `${item.name} (${item.units} × ${quantity}) - ₹${item.totalPrice.toFixed(2)}%0A`;
+    });
+    orderDetails += `Total: ₹${document.getElementById('totalAmount').textContent}`;
+
+    const whatsappURL = `https://wa.me/919121588322?text=${orderDetails}`;
+    window.open(whatsappURL, '_blank');
+  }
+
+  function updatePrice(select) {
+    const price = select.value;
+    const name = select.closest('.card-body').querySelector('.card-title').textContent.trim();
+    const button = select.nextElementSibling;
+    button.setAttribute('onclick', `addToCart('${name}', ${price})`);
+  }
+</script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

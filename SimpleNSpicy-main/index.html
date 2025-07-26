@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple N Spicy</title>
+    <link rel="icon" href="SNS_logo.jpg" type="image/jpeg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        #cartContainer {
+            position: fixed;
+            top: 0;
+            right: -25%;
+            width: 25%;
+            height: 100%;
+            background-color: #f8f9fa;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1050;
+        }
+        #cartContainer.show {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="SNS_logo.jpg" alt="Logo" style="height: 60px; margin-right: 10px; border-radius: 50%;">
+                <span class="brand-name">SIMPLE N <span class="brand-highlight">SPICY</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="offers.html">Offers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-sm btn-primary position-relative" onclick="showCart()">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">0</span>
+                        </button>
+                    </li>
+                </ul>
+                <div class="ms-3 d-flex">
+                    
+                    <a href="ordernow.html" class="btn btn-primary">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-3 fw-bold mb-4">Bringing Authentic Flavors to Every Jar</h1>
+                    <p class="lead mb-5">Discover artisanal food crafted with passion and precision at <span class="brand-highlight">SIMPLE N SPICY</span></p>
+                    <a href="#menu" class="btn btn-primary btn-lg me-3">Explore Menu</a>
+                    <a href="#offers" class="btn btn-outline-light btn-lg">Our Pickles</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title">Our Artisanal Creations</h2>
+                <p class="section-subtitle">Handcrafted with love and premium ingredients</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Food Item 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card food-card h-100">
+                        
+                        <img src="avakaya.jpg" class="card-img-top" alt="Gourmet Burger">
+                        <div class="card-body">
+                            <div class="badge-ribbon">!  Recommended</div>
+                            <h5 class="card-title">Avakaya Pickle</h5>
+                            <p class="card-text">Classic, bold, and bursting with raw mango fire – this is Avakaya at its finest.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">₹280(500 g)</span>
+                                <button class="btn btn-sm btn-outline-primary" onclick="window.location.href='avakaya.html'">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card food-card h-100">
+                        
+                        <img src="tomato.jpg" class="card-img-top" alt="Fresh Salad">
+                        <div class="card-body">
+                            <h5 class="card-title">Tomato Pickle</h5>
+                            <p class="card-text">Juicy, tangy, and unapologetically spicy – meet your new tomato obsession.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">₹280(500 g)</span>
+                                <button class="btn btn-sm btn-outline-primary" onclick="location.href='tomato.html'">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card food-card h-100">
+                        <div class="badge-ribbon">New</div>
+                        <img src="gongura.jpg" class="card-img-top" alt="Pasta Dish">
+                        <div class="card-body">
+                            <h5 class="card-title">Gongura Pickle</h5>
+                            <p class="card-text">Sour meets spice in this leafy legend – Gongura done the Simple n Spicy way.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">₹280(500 g)</span>
+                                <button class="btn btn-sm btn-outline-primary" onclick="location.href='gongura.html'">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 4 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card food-card h-100">
+                        <img src="chicken_pikcle_with_bone.jpeg" class="card-img-top" alt="Pizza">
+                        <div class="card-body">
+                            <h5 class="card-title">Chicken Pickle(Bone)</h5>
+                            <p class="card-text">Flavor that clings to the bone and hits the soul. Old-school spicy goodness.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">₹500(500 g)</span>
+                                <button class="btn btn-sm btn-outline-primary" onclick="location.href='chicken_with_bone.html'">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 5 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card food-card h-100">
+                        <div class="badge-ribbon">Popular</div>
+                        <img src="BL_chicken_pickle.png" class="card-img-top" alt="Dessert">
+                        <div class="card-body">
+                            <h5 class="card-title">Chicken Pickle(Boneless)</h5>
+                            <p class="card-text">All meat. All heat. No bones, just boldness.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">₹600(500 g)</span>
+                                <button class="btn btn-sm btn-outline-primary" onclick="location.href='chicken_boneless.html'">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 6 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card food-card h-100">
+                        <img src="prawns.jpg" class="card-img-top" alt="Breakfast">
+                        <div class="card-body">
+                            <h5 class="card-title">Prawns Pickle</h5>
+                            <p class="card-text">Sea spice unleashed – prawns soaked in fiery magic.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">₹850(500 g)</span>
+                                <button class="btn btn-sm btn-outline-primary" onclick="location.href='prawns.html'">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="ordernow.html" class="btn btn-outline-primary btn-lg">Order Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offers Section -->
+    <section id="offers" class="py-5 bg-light">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title">Special Offers</h2>
+                <p class="section-subtitle">Enjoy these exclusive deals</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Offer 1 -->
+                <div class="col-md-4">
+                    <div class="card offer-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="offer-badge"> Flat 15% Off</div>
+                            <h3 class="card-title">Mix & Match Madness</h3>
+                            <p class="card-text">Create your own combo of any 4 pickles and get 15% off instantly.</p>
+                            <div class="offer-valid">Valid until Dec 31, 2025</div>
+                            <button class="btn btn-primary mt-3">Claim Offer</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Offer 2 -->
+                <div class="col-md-4">
+                    <div class="card offer-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="offer-badge">Spice Starter Pack – ₹199 Only</div>
+                            <h3 class="card-title">LIMITED TIME TASTE PACK</h3>
+                            <p class="card-text">Taste before you dive in! Try 3 mini packs — Avakaya, Tomato & Gongura — for just ₹199.</p>
+                            <div class="offer-valid">Valid until Aug 31, 2025</div>
+                            <button class="btn btn-primary mt-3">Claim Offer</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Offer 3 -->
+                <div class="col-md-4">
+                    <div class="card offer-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="offer-badge">Refer & Refill</div>
+                            <h3 class="card-title">SHARE & SAVE</h3>
+                            <p class="card-text">Refer a friend and get ₹100 off your next order.</p>
+                            <div class="offer-valid">Valid until Dec 31, 2025</div>
+                            <button class="btn btn-primary mt-3">Claim Offer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="ai_pickles.png" alt="Our Kitchen" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="section-title mb-4">Our Story</h2>
+                    <p class="lead">Simple n Spicy began with just one person, a craving for real flavor, and a kitchen filled with fiery aromas.
+
+What started as a small batch of homemade pickle, crafted with love and curiosity, quickly turned into a mission — to bring authentic, bold taste back to every meal.
+
+Using only fresh, local ingredients and a whole lot of spice, each jar tells the story of one person’s passion turned into a spicy movement.
+
+No additives. No shortcuts. Just one simple truth — real taste is always spicy.</p>
+                    
+                    <a href="#" class="btn btn-outline-primary mt-3">Meet Our Chefs</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title">Visit Us</h2>
+                <p class="section-subtitle">We'd love to hear from you</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="contact-card text-center p-4 h-100">
+                        <div class="contact-icon mb-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Location</h3>
+                        <p>HYD<br>Nagaram, 500083</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="contact-card text-center p-4 h-100">
+                        <div class="contact-icon mb-3">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Phone</h3>
+                        <p>+91 9121588322<br>For Orders and Queries</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="contact-card text-center p-4 h-100">
+                        <div class="contact-icon mb-3">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Hours</h3>
+                        <p>Monday - Friday: 11am - 10pm<br>Saturday - Sunday: 10am - 11pm</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.2782369741662!2d78.5944454!3d17.494226599999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9d0025b8bb17%3A0x84aaa9e7217db2ae!2sSimple%20and%20spicy!5e0!3m2!1sen!2sin!4v1753372335032!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-form p-4">
+                        <h3 class="mb-4">Send Us a Message</h3>
+                        <form id="contactForm" method="get" target="_blank">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="mobile" placeholder="Your Mobile Number" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" name="text" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="sendMessage()">Send Message</button>
+                        </form>
+                        <script>
+                            function sendMessage() {
+                                const form = document.getElementById('contactForm');
+                                const name = encodeURIComponent(form.name.value);
+                                const email = encodeURIComponent(form.email.value);
+                                const mobile = encodeURIComponent(form.mobile.value);
+                                const text = encodeURIComponent(form.text.value);
+                                const whatsappURL = `https://wa.me/9121588322?text=Name: ${name}%0AEmail: ${email}%0APhone Number: ${mobile}%0AMessage: ${text}`;
+                                window.open(whatsappURL, '_blank');
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="brand-name mb-3">SIMPLE N <span class="brand-highlight">SPICY</span></h3>
+                    <p>Artisanal food crafted with passion and precision. We celebrate quality ingredients and culinary creativity.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-yelp"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">Home</a></li>
+                        <li class="mb-2"><a href="#menu">Menu</a></li>
+                        <li class="mb-2"><a href="#offers">Offers</a></li>
+                        <li class="mb-2"><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> HYD, Nagaram, 500083</li>
+                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> +91 9121588322</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@simplenspicy.com</li>
+                        <li><i class="fas fa-clock me-2"></i> Mon-Fri: 11am-10pm, Sat-Sun: 10am-11pm</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-72" style="font-size: 3.0em; ">SIMPLICITY<br> MEETS <br> SPICE</h5>
+                    
+    
+                </div>
+            </div>
+            <hr class="mt-5">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 SIMPLE N SPICY. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">
+                        <a href="#" class="me-3">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Icon -->
+    <a href="https://wa.me/919121588322" target="_blank" style="position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: white; border-radius: 50%; width: 80px; height: 80px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-decoration: none;">
+        <i class="fab fa-whatsapp" style="font-size: 40px;"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+    <script>
+        // Ensure clicking reload opens the home page
+        window.onbeforeunload = function () {
+            window.location.hash = "#";
+            window.scrollTo(0, 0);
+        };
+
+        let cart = [];
+
+        function showCart() {
+            const cartContainer = document.getElementById('cartContainer');
+            cartContainer.classList.add('show');
+        }
+
+        function hideCart() {
+            const cartContainer = document.getElementById('cartContainer');
+            cartContainer.classList.remove('show');
+        }
+
+        document.addEventListener('click', function(event) {
+            const cartContainer = document.getElementById('cartContainer');
+            const cartButton = document.querySelector('.btn.btn-sm.btn-primary');
+            if (!cartContainer.contains(event.target) && !cartButton.contains(event.target) && cartContainer.classList.contains('show')) {
+                hideCart();
+            }
+        });
+    </script>
+
+    <div id="cartContainer">
+        <div class="card">
+            <div class="card-body">
+                <button class="btn-close float-end" aria-label="Close" onclick="hideCart()"></button>
+                <h5 class="card-title">Your Cart</h5>
+                <ul id="cartItems" class="list-group mb-3">
+                    <!-- Cart items will be dynamically added here -->
+                </ul>
+                <h6>Total: ₹<span id="totalAmount">0</span></h6>
+                <button class="btn btn-success w-100 mt-3" onclick="placeOrder()">Place Order</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
